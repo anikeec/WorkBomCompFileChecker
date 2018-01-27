@@ -20,12 +20,13 @@ import org.apache.poi.ss.usermodel.CellType;
 public class Excel {
     
     public static ExcelTable loadTableFromExcel(String file) throws IOException {
+        ExcelTable table = null;
         try (HSSFWorkbook myExcelBook = 
                         new HSSFWorkbook(new FileInputStream(file))) {
             HSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
             int numberOfRows = myExcelSheet.getLastRowNum();
             
-            ExcelTable table = new ExcelTable();
+            table = new ExcelTable();
             
             //create structure
             HSSFRow row = myExcelSheet.getRow(0);
@@ -67,9 +68,9 @@ public class Excel {
                     tableRow.setCellValue(cellId, strValue);
                 }
                 table.addRow(tableRow);
-            }
-            return table;
-        }        
+            }            
+        } 
+        return table;
     }
     
 }

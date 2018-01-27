@@ -6,14 +6,17 @@
 package com.apu.workbomcompfilechecker;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 /**
  *
  * @author apu
  */
 public class Main {
+    
+    private static final Log log = Log.getInstance();
+    private static final Class classname = Main.class;
+ 
     
     public static String fileTestPcb = "D:/Temp/testPcb.xls";
     public static String fileComp = "D:/Temp/comp.xls";
@@ -22,9 +25,14 @@ public class Main {
         try {
             ExcelTable compTable = Excel.loadTableFromExcel(fileComp);
             ExcelTable fileTable = Excel.loadTableFromExcel(fileTestPcb);
-            System.out.println();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            if(Checker.compareComponentNames(fileTable, compTable) == false) {
+                for(String str:Checker.getErrors()) {
+//                    System.out.println(str);
+                    log.debug(classname,str);
+                }
+            }
+        } catch(IOException ex) {
+            log.debug(classname,ExceptionUtils.getStackTrace(ex));
         }
     }
     

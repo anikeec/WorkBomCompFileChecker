@@ -29,13 +29,14 @@ public class ExcelTable implements ITable {
     public void addColumn(List<String> column, String name) {
         if(tableIsCreated)  return;
         table.add(column);
-        tableColumnNames.add(name);
+        tableColumnNames.add(name.trim());
     }
     
     public void finishEditTableStructure() {
         this.tableIsCreated = true;
     }
     
+    @Override
     public void addRow(ITableRow row) {
         for(List list:table) { //fill row by nulls at first
             list.add(null);
@@ -53,6 +54,27 @@ public class ExcelTable implements ITable {
             tableRow.setCellValue(i, table.get(i).get(id));
         }
         return tableRow;
+    }
+
+    @Override
+    public int getSize() {
+        return this.lastRowId;
+    }
+
+    @Override
+    public Integer getColumnIdByName(String name) {
+        String nameToFind = name.trim();
+        for(int i=0; i<tableColumnNames.size(); i++) {
+            if(nameToFind.equalsIgnoreCase(tableColumnNames.get(i)))
+                return i;
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getColumnById(int id) {
+        if(id>= table.size())   return null;
+        return table.get(id);
     }
     
 }

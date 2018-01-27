@@ -25,7 +25,7 @@ public class ExcelTableRow implements ITableRow {
     
     @Override
     public void setCellValue(int cellId, String value) {
-        row.set(cellId, value);
+        row.set(cellId, value.trim());
     }
 
     @Override

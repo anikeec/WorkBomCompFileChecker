@@ -5,12 +5,18 @@
  */
 package com.apu.workbomcompfilechecker;
 
+import com.apu.workbomcompfilechecker.ITableRow;
+import java.util.List;
+
 /**
  *
  * @author apu
  */
 public interface ITable {
     
-    ITableRow getRowById(int id);
-    
+    public int getSize();
+    public ITableRow getRowById(int id);
+    public void addRow(ITableRow row);
+    public Integer getColumnIdByName(String name);
+    public List<String> getColumnById(int id);
 }
