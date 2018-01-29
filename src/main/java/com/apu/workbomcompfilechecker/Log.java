@@ -34,7 +34,11 @@ public class Log {
     }
     
     public synchronized void error(Class className, String str) {
-        logger.debug("(" + className.getName() + ") - " + str);
+        logger.error("(" + className.getName() + ") - " + str);
+    }
+    
+    public synchronized void info(Class className, String str) {
+        logger.debug(str);
     }
     
     private String editString(String str) {

@@ -15,20 +15,17 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 public class Main {
     
     private static final Log log = Log.getInstance();
-    private static final Class classname = Main.class;
- 
-    
-    public static String fileTestPcb = "D:/Temp/testPcb.xls";
-    public static String fileComp = "D:/Temp/comp.xls";
+    private static final Class classname = Main.class; 
     
     public static void main(String[] args) {
         try {
+            String fileTestPcb = args[0];
+            String fileComp = args[1];
             ExcelTable compTable = Excel.loadTableFromExcel(fileComp);
             ExcelTable fileTable = Excel.loadTableFromExcel(fileTestPcb);
             if(Checker.compareComponentNames(fileTable, compTable) == false) {
                 for(String str:Checker.getErrors()) {
-//                    System.out.println(str);
-                    log.debug(classname,str);
+                    log.info(classname,str);
                 }
             }
         } catch(IOException ex) {

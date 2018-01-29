@@ -87,9 +87,9 @@ public class Checker {
             if((compNameBom.equalsIgnoreCase(compNameEComp) == false) &&
                (compNameBom.equalsIgnoreCase(compNameRComp) == false)) {
                 String error = "Different name for " + referenceBom + ": \r\n" +
-                        "bom - " + compNameBom + "\r\n" +
-                        "comp.xls - " + compNameEComp + "\r\n" +
-                        "comp.xls - " + compNameRComp + "\r\n";
+                        compNameBom + " - bom," + "\r\n" +
+                        compNameEComp + " - comp.xls," + "\r\n" +
+                        compNameRComp + " - comp.xls," + "\r\n";
                 errors.add(error);                
                 continue;
             }
